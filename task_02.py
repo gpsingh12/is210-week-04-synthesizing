@@ -12,7 +12,8 @@ DISPLAY_TIME = TIME < '0600'
 if WEEKDAY and DISPLAY_TIME:
     SNOOZE = 'True'
 
-else: SNOOZE = 'False'
+else:
+    SNOOZE = 'False'
 
 
 if SNOOZE is 'False':
