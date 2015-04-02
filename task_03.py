@@ -2,65 +2,93 @@
 # -*- coding: utf-8 -*-
 """ Docstring. """
 
+import decimal
+
 NAME = raw_input('What is your name? ')
 
 PRINCIPAL = raw_input('What is amount of your Principal? $ ')
-PRINCIPAL = float(PRINCIPAL)
+PRINCIPAL = int(PRINCIPAL)
 PRN = PRINCIPAL <= 199999
-PRP = (2000000 <= PRINCIPAL <= 999999)
+PRP = (200000 <= PRINCIPAL <= 999999)
 PRL = (PRINCIPAL >= 1000000)
 DURATION = raw_input('for how many years is this loan being borrowed? ')
 DURATION = int(DURATION)
-DUR = (DURATION <= 15)
+DUR = (1 <= DURATION <= 15)
 DRN = (16 <= DURATION <= 20)
 DRT = (21 <= DURATION <= 30)
-Pre_qualified = raw_input('Are you pre-qualified for this loan? ')
-PRE_Q = Pre-qualified == 'Yes' or Pre-qualified == 'y'
-PRE_QL = Pre-qualified == 'No' or 'n'
+Prequalified = raw_input('Are you pre-qualified for this loan? ')
+PRE_Q = (Prequalified == 'Yes') or (Prequalified == 'y')
+PRE_QL = Prequalified == 'No' or 'n'
+Comp_Int = 12
+TOTAL = None
+#Interest_Rate = None
 
-if PRN and DUR and PRE_Q:
-    Interest Rate = 3.63
-else:
-    Interest Rate = 4.65
+if PRN and DUR:
+    if PRE_Q:
+        Interest_Rate =decimal.Decimal('0.0363')
+    elif PRE_QL:
+        Interest_Rate = decimal.Decimal('0.0465')
+    else:
+        Interest_Rate = None
 
-if PRN and DRN and PRE_Q:
-    Interest Rate = 4.04
-else:
-    Interest Rate = 4.98
+if PRN and DRN:
+    if PRE_Q:
+        Interest_Rate =decimal.Decimal('0.0404')
+    elif PRE_QL:
+        Interest_Rate = decimal.Decimal('0.0498')
+    else:
+        Interest_Rate = None
 
-if PRN and PRE_Q and DRT:
-    Interest Rate = 5.77
-else:
-    Interest Rate = 6.39
+if PRN and DRT:
+    if PRE_Q:
+        Interest_Rate =decimal.Decimal('0.0577')
+    elif PRE_QL:
+        Interest_Rate = decimal.Decimal('0.0639')
+    else:
+        Interest_Rate = None
 
-if PRP and PRE_Q and DUR:
-    Interest Rate = 3.02 
-else:
-    Interest Rate = 3.98
+if PRP and DUR:
+    if PRE_Q:
+        Interest_Rate =decimal.Decimal('0.0302')
+    elif PRE_QL:
+        Interest_Rate = decimal.Decimal('0.0398')
+    else:
+        Interest_Rate = None
 
-if PRP and DRN and PRE_Q:
-    Interest Rate = 3.27
-else:
-    Interest_Rate = 4.08
+if PRP and DRN:
+    if PRE_Q:
+        Interest_Rate =decimal.Decimal('0.0327')
+    elif PRE_QL:
+        Interest_Rate = decimal.Decimal('0.0408')
+    else:
+        Interest_Rate = None
+
 
 if PRP and DRT and PRE_Q:
-    Interest Rate = 4.66
-
-
-if PRL and DUR and PRE_Q:
-    Interest Rate = 2.05
-
-if PRL and DRN and PRE_Q:
-    Interest_Rate = 2.62
-
+    Interest_Rate = decimal.Decimal('0.0466')
+else:
+    Interest_Rate = None
     
-AMOUNT = PRINCIPAL * (1 + (Interest_Rate/12))**float(12*DURATION)  
-               
-print 'Loan Report for: ' '{}'.format(NAME)
-print '--------------------------------------'
-print 'Principal : ''{}'.format(PRINCIPAL)
-print 'Duration: ' '{}'.format(DURATION)
-print 'Prequalified: ' '{}'.format(Pre_qualified)
-print '                                          '
-TOTAL = (AMOUNT)
-print 'Total: ''{}'.format(TOTAL)
+            
+if PRL and DUR and PRE_Q:
+    Interest_Rate = decimal.Decimal('.0205')
+else:
+    Interest_Rate = None
+    
+if PRL and DRN and PRE_Q:
+    Interest_Rate = decimal.Decimal(' .0262')
+else:
+    Interest_Rate = None
+if Interest_Rate:
+    AMOUNT = PRINCIPAL * (1 + Interest_Rate/Comp_Int)**(Comp_Int*DURATION)  
+    TOTAL = int(AMOUNT)
+    TOTAL = int(round(TOTAL))
+    
+REPORT = 'Loan Report for:  {}'.format(NAME)
+REPORT += '----------------------------------------'  + '\n'
+REPORT += 'Principal: {}'.format(PRINCIPAL)
+REPORT += 'Duration:   {}'.format(DURATION)
+REPORT += 'Prequalified: {}'.format(Prequalified)
+                                        
+
+print REPORT
