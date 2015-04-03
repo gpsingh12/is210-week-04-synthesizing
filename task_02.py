@@ -2,16 +2,14 @@
 # -*- coding: utf-8 -*-
 """ Docstring. """
 
-DAY = raw_input('What day is it? ').lower()
-WEEKDAY = (DAY == 'Sat' or DAY == 'Sun' or DAY == 'Saturday' or DAY == 'Sunday')
+DAY = raw_input('What day is it? ').lower().strip()[:3]
+WEEKDAY = (DAY == 'sat') or (DAY == 'sun')
 TIME = int(raw_input('What time is it? '))
-#TIME = int(TIME)
 DISPLAY_TIME = (TIME < 600)
 
-if (WEEKDAY or DISPLAY_TIME):
+SNOOZE = False
+if WEEKDAY or DISPLAY_TIME:
     SNOOZE = True
-else:
-    SNOOZE = False
 
-if not SNOOZE:
+if SNOOZE:
     print 'Beep! Beep! Beep! Beep! Beep!'
